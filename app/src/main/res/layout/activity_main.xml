@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="140dp"
+    tools:context="com.example.owner.financialtracking.MainActivity">
+    android:scrollbarAlwaysDrawVerticalTrack="true">
+
+    <Button
+        android:id="@+id/Readme"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:text="Readme"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="250dp" />
+
+    <Button
+        android:id="@+id/Login"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:text="Login"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="180dp" />
+
+    <Button
+        android:id="@+id/Map"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="320dp"
+        android:text="Map" />
+</LinearLayout>

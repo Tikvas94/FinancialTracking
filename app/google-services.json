@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "109522474850",
+    "firebase_url": "https://finantialtracking.firebaseio.com",
+    "project_id": "finantialtracking",
+    "storage_bucket": "finantialtracking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109522474850:android:e9a043944ba00eff",
+        "android_client_info": {
+          "package_name": "com.example.owner.financialtracking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "109522474850-3oae084lt5torns2voqk2c63c6crk733.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.owner.financialtracking",
+            "certificate_hash": "862349770b8cfd76af4bb960e5b3ffe2c7539a27"
+          }
+        },
+        {
+          "client_id": "109522474850-55ole9htal77gqibvskjsisumc91mra1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw0E-BIsIUQ5k-f2aoz6mAUrUQO40Peg4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "109522474850-55ole9htal77gqibvskjsisumc91mra1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

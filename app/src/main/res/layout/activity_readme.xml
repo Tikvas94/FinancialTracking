@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="com.example.owner.financialtracking.ReadmeActivity">
+    android:scrollbarAlwaysDrawVerticalTrack="true">
+
+    <ScrollView
+        android:id="@+id/SCROLLER_ID"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="444dp"
+            android:text=" README\n\n application name: CashFlow version 1.1 03/12/2017\n price: 0$\n\n Too many times when the end of the month arrives, people don’t relays how why and when they spend so much money, and &quot;where it went.\n\n People try to save money, to become more efficient in there economy issues, and stay with finger on the hart with the &quot;pays&quot; subject\n\n With the &quot;CashFlow&quot; app it can be done easily.\n\n General usage notes:\n •	Easy and comfort interface that you determine on what   and how much to spend money on every month.\n •	Exceeding expenses warning.\n  •	Save the &quot;income  \ expense &quot; data of the last months\n •	A map to your Personal bank\n\n With cashflow you could manage your money easily and start with smile the next month.\n  From house of TOTE\n\n &quot;its ain't just another APP&quot; .\n contact us:\n 	voice: 052 625519\n 	email: Tikva_Ezri_Tomer_Or@gmail.com\n 	website: awesome@gmail.com\n  - - - - - - - - - - - - - - - - - - - - \n\n Download the app from googlePlay.\n for installing you should have at minimum of SDK 27.\n "
+            android:textAlignment="textStart" />
+    </ScrollView>
+</LinearLayout>

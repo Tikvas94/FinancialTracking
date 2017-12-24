@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="60dp"
+    tools:context="com.example.owner.financialtracking.RegisterActivity">
+    android:scrollbarAlwaysDrawVerticalTrack="true">
+
+    <EditText
+        android:id="@+id/FirstName"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="First Name"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="20dp" />
+
+    <EditText
+        android:id="@+id/LastName"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="Last Name"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="80dp" />
+
+    <EditText
+        android:id="@+id/Password1"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="140dp" />
+
+    <EditText
+        android:id="@+id/Password2"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="Password Verification"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="200dp" />
+
+    <EditText
+        android:id="@+id/E-mail"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="260dp" />
+
+    <EditText
+        android:id="@+id/PhoneNumber"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="320dp" />
+
+    <EditText
+        android:id="@+id/City"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="City"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="380dp" />
+
+    <EditText
+        android:id="@+id/Street"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Street"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="440dp" />
+
+    <Button
+        android:id="@+id/loadImage"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:text="Load Image"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="500dp"/>
+
+    <Button
+        android:id="@+id/Register"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:text="Register"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="560dp"/>
+</LinearLayout>
