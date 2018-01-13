@@ -12,11 +12,38 @@
     tools:context="com.example.owner.financialtracking.CashFlowActivity">
     android:scrollbarAlwaysDrawVerticalTrack="true">
 
-    <TextView
-        android:id="@+id/JustATitle"
-        android:layout_width="295dp"
-        android:layout_height="442dp"
-        android:text="this is the page that the app start working with a spesific user!!!"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="40dp" />
+    <Button
+        android:id="@+id/manager_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="manage users"
+        android:textAlignment="textStart"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/myProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Profile"/>
+
+
+    <Button
+        android:id="@+id/income_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Income" />
+
+
+    <Button
+        android:id="@+id/expenses_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Expenses"
+        android:visibility="gone"/>
+
+
 </LinearLayout>

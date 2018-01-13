@@ -13,7 +13,7 @@
     android:scrollbarAlwaysDrawVerticalTrack="true">
 
     <EditText
-        android:id="@+id/UserName"
+        android:id="@+id/Email"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:ems="10"

@@ -14,24 +14,29 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
 
 public class LoginActivity extends AppCompatActivity {
+
     private FirebaseAuth mAuth;
+
+    EditText e_Email;
+    EditText e_Password;
+
+    Button Login;
+    TextView RegisterLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final EditText UserName = (EditText) findViewById(R.id.UserName);
-        final EditText Password = (EditText) findViewById(R.id.Password);
+        mAuth = FirebaseAuth.getInstance();
 
-        final Button Login = (Button) findViewById(R.id.Login);
+        e_Email = findViewById(R.id.Email);
+        e_Password = findViewById(R.id.Password);
 
-        final TextView RegisterLink = (TextView) findViewById(R.id.Register);
+        Login = findViewById(R.id.Login);
+        RegisterLink = findViewById(R.id.Register);
 
         RegisterLink.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -42,26 +47,31 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
         Login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick( View v){
-//                Intent CashFlowIntent = new Intent(LoginActivity.this, CashFlowActivity.class);
-//                LoginActivity.this.startActivity(CashFlowIntent);
-                authenticateUser(UserName.toString(), Password.toString());
+                final String Email = e_Email.getText().toString().trim();
+                final String Password = e_Password.getText().toString().trim();
+                Toast.makeText(LoginActivity.this, LoginActivity.this.getResources()
+                        .getString(R.string.login_try_conn), Toast.LENGTH_LONG).show();
+                authenticateUser(Email, Password);
             }
         });
     }
 
     private void authenticateUser(String email, String password) {
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         // When login failed
                         if (!task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Email or Password are incorrect!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, LoginActivity.this.getResources()
+                                    .getString(R.string.login_incorrect), Toast.LENGTH_LONG).show();
                         } else {
+                            Toast.makeText(LoginActivity.this, LoginActivity.this.getResources()
+                                    .getString(R.string.login_succ), Toast.LENGTH_LONG).show();
                             //When login successful, redirect user to main activity
                             Intent intent = new Intent(LoginActivity.this, CashFlowActivity.class);
                             startActivity(intent);

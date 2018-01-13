@@ -4,4 +4,56 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_income">IncomeActivity</string>
+    <string name="title_activity_expense">ExpenseActivity</string>
+
+    <!--registerActivity-->
+    <string name="reg_err">Registration error!</string>
+    <string name="reg_succ">Registration Successful</string>
+    <string name="reg_fn_err">Invalid first name, only A-Z, a-z letters</string>
+    <string name="reg_ln_err">Invalid last name, only A-Z, a-z letters</string>
+    <string name="reg_pn10_err">Invalid phone number, tipe 10 length phone number</string>
+    <string name="reg_pn_err">Invalid phone number, tap numbers only</string>
+    <string name="reg_cp_err">Invalid password, the two passwords arn\'t match</string>
+    <string name="reg_c_err">Invalid city, only A-Z, a-z letters</string>
+    <string name="reg_s_err">Invalid Street, only A-Z, a-z letters</string>
+    <string name="reg_e_err">Invalid Email add @</string>
+
+    <!--CashFlowActivity-->
+    <string name="cash_r_err">Failed to read value</string>
+
+    <!--ExpenseActivity-->
+    <string name="exp_tot">total Expense is: </string>
+    <string name="exp_read_err">reading Error</string>
+    <string name="exp_entered">entered: </string>
+    <string name="exp_not_entered">You did not entered any number...</string>
+
+    <!--ProfileActivity-->
+    <string name="pro_first">First Name: </string>
+    <string name="pro_last">Last Name: </string>
+    <string name="pro_email">Email: </string>
+    <string name="pro_phone">Phone Number: </string>
+    <string name="pro_city">City: </string>
+    <string name="pro_street">Street: </string>
+
+    <!--IncomeActivity-->
+    <string name="inc_tot">total income is: </string>
+    <string name="inc_read_err">reading Error</string>
+    <string name="inc_entered">entered: </string>
+    <string name="inc_null">null</string>
+    <string name="inc_canclled">cancelled..!</string>
+
+    <!--LoadImageActivity-->
+    <string name="load_warn">warning! picture format is jpeg</string>
+    <string name="load_up_succ">Image uploaded successfully :)</string>
+    <string name="load_up_not_succ">Not a valid picture format :(</string>
+    <string name="load_take_succ">Photo was taken successfully :)</string>
+    <string name="load_upload">uploading...</string>
+    <string name="load_not_choos">Photo was not choosen:(</string>
+
+    <!--LoginActivity-->
+    <string name="login_incorrect">Email or Password are incorrect!</string>
+    <string name="login_succ">"Login Successfully"</string>
+    <string name="login_try_conn">Trying to Connect...</string>
+
 </resources>

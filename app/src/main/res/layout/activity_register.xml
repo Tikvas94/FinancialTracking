@@ -93,14 +93,6 @@
         tools:layout_editor_absoluteY="440dp" />
 
     <Button
-        android:id="@+id/loadImage"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:text="Load Image"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="500dp"/>
-
-    <Button
         android:id="@+id/Register"
         android:layout_width="300dp"
         android:layout_height="70dp"

@@ -10,26 +10,28 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Account {
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     final DatabaseReference ref = database.getReference("Account");
+    final String def_pic_url= "https://firebasestorage.googleapis.com/v0/b/finantialtrackingtote.appspot.com/o/default.jpeg?alt=media&token=b7bedaab-bf69-43f9-b387-46506c61fc46";
 
-    private String FirstName, LastName, UserName, Email, Password, Street, City, id,Type;
+    private String FirstName, LastName, UserName, Email, Password, Street, PhoneNumber, City, id,Type, picture;
+    //Tomer
+    private boolean isManager;
 
     public Account(){
         //for fire base
     }
 
     public Account(String FirstName, String LastName, String Password, String Email,
-                     String street, String city, String id/*, String path*/) {
+                     String street, String phoneNumber, String city,boolean isManager, String id) {
         this.FirstName=FirstName;
         this.LastName=LastName;
-        this.UserName=UserName;
         this.Email=Email;
         this.Password=Password;
         this.Street=street;
+        this.PhoneNumber=phoneNumber;
         this.City=city;
+        this.isManager = isManager;
         this.id=id;
-//        this.imagePath=path;
-        this.Type="Non-Admin";
-
+        this.picture = def_pic_url ;
 }
 
     public String getType() {
@@ -92,6 +94,14 @@ public class Account {
         this.Street = street;
     }
 
+    public String getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public void setPhoneNumber(String PhoneNumber) {
+        this.City = PhoneNumber;
+    }
+
     public String getCity() {
         return City;
     }
@@ -108,6 +118,12 @@ public class Account {
         this.id = id;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {this.picture = picture;}
+
     public void save()
     {
         DatabaseReference usersRef = ref.child(id);
@@ -122,13 +138,16 @@ public class Account {
         c.setValue(Email);
         c=usersRef.child("Password");
         c.setValue(Password);
+        c=usersRef.child("PhoneNumber");
+        c.setValue(PhoneNumber);
         c=usersRef.child("City");
         c.setValue(City);
         c=usersRef.child("Street");
         c.setValue(Street);
-        c=usersRef.child("Photo");
-//        c.setValue(imagePath);
-//        c=usersRef.child("Type");
-//        c.setValue(Type);
+        c=usersRef.child("isManager");
+        c.setValue(isManager);
+        c=usersRef.child("Picture");
+        c.setValue(picture);
+
     }
 }

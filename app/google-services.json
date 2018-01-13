@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "109522474850",
-    "firebase_url": "https://finantialtracking.firebaseio.com",
-    "project_id": "finantialtracking",
-    "storage_bucket": "finantialtracking.appspot.com"
+    "project_number": "156692927086",
+    "firebase_url": "https://finantialtrackingtote.firebaseio.com",
+    "project_id": "finantialtrackingtote",
+    "storage_bucket": "finantialtrackingtote.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:109522474850:android:e9a043944ba00eff",
+        "mobilesdk_app_id": "1:156692927086:android:e9a043944ba00eff",
         "android_client_info": {
           "package_name": "com.example.owner.financialtracking"
         }
       },
       "oauth_client": [
         {
-          "client_id": "109522474850-3oae084lt5torns2voqk2c63c6crk733.apps.googleusercontent.com",
+          "client_id": "156692927086-gio9ulgaon2uval04ev02inklueekn0p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.owner.financialtracking",
@@ -23,13 +23,13 @@
           }
         },
         {
-          "client_id": "109522474850-55ole9htal77gqibvskjsisumc91mra1.apps.googleusercontent.com",
+          "client_id": "156692927086-bdqbvsr59l7uplsepcv9t1a3r237vilo.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAw0E-BIsIUQ5k-f2aoz6mAUrUQO40Peg4"
+          "current_key": "AIzaSyDa3iaeY7oqarg32MvCvRF1OxvE_upjTz8"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "109522474850-55ole9htal77gqibvskjsisumc91mra1.apps.googleusercontent.com",
+              "client_id": "156692927086-bdqbvsr59l7uplsepcv9t1a3r237vilo.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
