@@ -1,11 +1,13 @@
 package com.example.owner.financialtracking;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,27 +27,20 @@ import java.io.IOException;
 public class ProfileActivity extends AppCompatActivity {
 
     private ImageView targetImage;
-    private String userUID;
-    private FirebaseAuth mAuth;
-    private FirebaseUser user;
-    private DatabaseReference myRef;
-    private FirebaseDatabase mFirebaseDatabase;
     private TextView first, last, email, phone, city, street;
-    private Button LoadImage;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         targetImage = findViewById(R.id.targetimage);
-        mAuth=FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         //get current user
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        user = mAuth.getCurrentUser();
-        userUID = user.getUid();
-        myRef = mFirebaseDatabase.getReference();
-        LoadImage = findViewById(R.id.loadImage);
+        FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        String userUID = user != null ? user.getUid() : "";
+        DatabaseReference myRef = mFirebaseDatabase.getReference();
+        Button loadImage = findViewById(R.id.loadImage);
 
         first = findViewById(R.id.firstName);
         last = findViewById(R.id.LastName);
@@ -56,7 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Read from the database
 
-        LoadImage.setOnClickListener(new View.OnClickListener(){
+        loadImage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick( View v){
                 Intent LoadImageIntent = new Intent(ProfileActivity.this, LoadImageActivity.class);
@@ -64,7 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.child("Account").child(userUID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 showProfile(dataSnapshot);
@@ -72,43 +67,43 @@ public class ProfileActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError error) {
-                // Failed to read value
                 Toast.makeText(ProfileActivity.this, "Failed to read data..!", Toast.LENGTH_SHORT).show();
 
             }
         });
     }
 
-    private void showProfile(DataSnapshot dataSnapshot) {
-        dataSnapshot = dataSnapshot.child("Account").child(userUID);
-
-        first.setText(ProfileActivity.this.getResources()
-                .getString(R.string.pro_first) + " " + dataSnapshot.child("FirstName").getValue().toString());
-        last.setText(ProfileActivity.this.getResources()
-                .getString(R.string.pro_last) + " " + dataSnapshot.child("LastName").getValue().toString());
-        email.setText(ProfileActivity.this.getResources()
-                .getString(R.string.pro_email) + " " + dataSnapshot.child("Email").getValue().toString());
-        phone.setText(ProfileActivity.this.getResources()
-                .getString(R.string.pro_phone) + " " + dataSnapshot.child("PhoneNumber").getValue().toString());
-        city.setText(ProfileActivity.this.getResources()
-                .getString(R.string.pro_city) + " " +dataSnapshot.child("City").getValue().toString());
-        street.setText(ProfileActivity.this.getResources()
-                .getString(R.string.pro_street) + " " + dataSnapshot.child("Street").getValue().toString());
-
-        showProfilePic(dataSnapshot.child("Picture").getValue().toString());
+    @SuppressLint("SetTextI18n")
+    void setDetailText(TextView view, int resId, DataSnapshot dataSnapshot, String snapshotKey) {
+        try {
+            view.setText(ProfileActivity.this.getResources().getString(resId) + "\t\t" + dataSnapshot.child(snapshotKey).getValue());
+        } catch (Exception ex) {
+            Log.w(this.getClass().getSimpleName(), "Could not set profile detail for resID: " + resId, ex);
+        }
     }
 
-    private void showProfilePic(String PicturePath) {
-        if (!PicturePath.contains("http")) {
-            try {
-                Bitmap imageBitmap = decodeFromFirebaseBase64(PicturePath);
+    private void showProfile(DataSnapshot dataSnapshot) {
+        setDetailText(first, R.string.pro_first, dataSnapshot, "FirstName");
+        setDetailText(last, R.string.pro_last, dataSnapshot, "LastName");
+        setDetailText(email, R.string.pro_email, dataSnapshot, "Email");
+        setDetailText(phone, R.string.pro_phone, dataSnapshot, "PhoneNumber");
+        setDetailText(city, R.string.pro_city, dataSnapshot, "City");
+        setDetailText(street, R.string.pro_street, dataSnapshot, "Street");
+        showProfilePic((String)dataSnapshot.child("Picture").getValue());
+    }
+
+    private void showProfilePic(String picturePath) {
+        if (picturePath == null) return;
+        try {
+            if (!picturePath.startsWith("http")) {
+                Bitmap imageBitmap = decodeFromFirebaseBase64(picturePath);
                 targetImage.setImageBitmap(imageBitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
+            } else {
+                Picasso.with(ProfileActivity.this).load(picturePath).into(targetImage);
             }
-        }
-        else{
-            Picasso.with(ProfileActivity.this).load(PicturePath).into(targetImage);
+        } catch (Exception ex) {
+            //TODO
+            Log.w(this.getClass().getSimpleName(), "Could not load image!", ex);
         }
     }
 

@@ -19,3 +19,13 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Keep all the Account field namess, we might need them for serialization from FireBase:
+-keep keepclassmembers class com.example.owner.financialtracking.Account {
+    private <fields>;
+}
+
+# Keep the showProfile method, so that it can be invoked reflectively:
+-keep keep class com.example.owner.financialtracking.ProfileActivity {
+    private void showProfile(com.google.firebase.database.DataSnapshot);
+}

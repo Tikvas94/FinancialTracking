@@ -26,7 +26,7 @@
     <string name="exp_tot">total Expense is: </string>
     <string name="exp_read_err">reading Error</string>
     <string name="exp_entered">entered: </string>
-    <string name="exp_not_entered">You did not entered any number...</string>
+    <string name="exp_not_entered">You did not entered any number…</string>
 
     <!--ProfileActivity-->
     <string name="pro_first">First Name: </string>
@@ -48,12 +48,16 @@
     <string name="load_up_succ">Image uploaded successfully :)</string>
     <string name="load_up_not_succ">Not a valid picture format :(</string>
     <string name="load_take_succ">Photo was taken successfully :)</string>
-    <string name="load_upload">uploading...</string>
-    <string name="load_not_choos">Photo was not choosen:(</string>
+    <string name="load_upload">uploading…</string>
+    <string name="load_not_choos">Photo was not chosen:(</string>
 
     <!--LoginActivity-->
     <string name="login_incorrect">Email or Password are incorrect!</string>
     <string name="login_succ">"Login Successfully"</string>
-    <string name="login_try_conn">Trying to Connect...</string>
+    <string name="login_try_conn">Trying to Connect…</string>
 
+    <!--Account-->
+    <string name="Account_default_pic_url">
+        <![CDATA[https://firebasestorage.googleapis.com/v0/b/finantialtrackingtote.appspot.com/o/default.jpeg?alt=media&token=b7bedaab-bf69-43f9-b387-46506c61fc46]]>
+    </string>
 </resources>

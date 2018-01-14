@@ -3,11 +3,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -63,21 +65,33 @@ public class RegisterActivity extends AppCompatActivity {
 
                 //try to add a user:
                 if (RightFormate(FirstName, LastName, Password1, Password2, PhoneNumber, City, Street, Email))
-                    mAuth.createUserWithEmailAndPassword(Email, Password1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                new Account(FirstName, LastName, Password1, Email, Street, PhoneNumber, City,isManager, mAuth.getCurrentUser().getUid()).save();
-                                Toast.makeText(RegisterActivity.this, R.string.reg_succ, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(RegisterActivity.this, "", Toast.LENGTH_SHORT).show();
-                                Intent myIntent = new Intent(RegisterActivity.this, CashFlowActivity.class);
-                                startActivityForResult(myIntent, 0);
-                                finish();
-                            } else {
-                                Toast.makeText(RegisterActivity.this, R.string.reg_err, Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
+                    mAuth.createUserWithEmailAndPassword(Email, Password1)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        try {
+                                            new Account(RegisterActivity.this.getApplicationContext(), FirstName, LastName, Password1, Email, Street, PhoneNumber, City, isManager, mAuth.getCurrentUser().getUid()).save();
+                                            Toast.makeText(RegisterActivity.this, R.string.reg_succ, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RegisterActivity.this, "", Toast.LENGTH_SHORT).show();
+                                            Intent myIntent = new Intent(RegisterActivity.this, CashFlowActivity.class);
+                                            startActivityForResult(myIntent, 0);
+                                            finish();
+                                        } catch (Exception e) {
+                                            // TODO
+                                            Log.w(RegisterActivity.class.getSimpleName(), "Failed to register", e);
+                                            Toast.makeText(RegisterActivity.this, "Failed to register: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(RegisterActivity.class.getSimpleName(), "Failed to register", e);
+                                    Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
             }
         });
     }
@@ -89,14 +103,14 @@ public class RegisterActivity extends AppCompatActivity {
             if(FirstName.toLowerCase().charAt(i) < 'a' || FirstName.toLowerCase().charAt(i) > 'z'){
                 Toast.makeText(RegisterActivity.this, R.string.reg_fn_err, Toast.LENGTH_LONG).show();
                 return false;
-            };
+            }
         }
 
         for(int i = 0; i < LastName.length(); i++){
             if(LastName.toLowerCase().charAt(i) < 'a' || LastName.toLowerCase().charAt(i) > 'z'){
                 Toast.makeText(RegisterActivity.this, R.string.reg_ln_err, Toast.LENGTH_LONG).show();
                 return false;
-            };
+            }
         }
         if(PhoneNumber.length() != 10){
             Toast.makeText(RegisterActivity.this,R.string.reg_pn10_err, Toast.LENGTH_LONG).show();
@@ -106,7 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
             if(PhoneNumber.toLowerCase().charAt(i) < '0' || PhoneNumber.toLowerCase().charAt(i) > '9'){
                 Toast.makeText(RegisterActivity.this, R.string.reg_pn_err, Toast.LENGTH_LONG).show();
                 return false;
-            };
+            }
         }
         if(!Password1.equals(Password2)){
             Toast.makeText(RegisterActivity.this, R.string.reg_cp_err, Toast.LENGTH_LONG).show();
@@ -116,21 +130,19 @@ public class RegisterActivity extends AppCompatActivity {
             if(City.toLowerCase().charAt(i) < 'a' || City.toLowerCase().charAt(i) > 'z'){
                 Toast.makeText(RegisterActivity.this, R.string.reg_c_err, Toast.LENGTH_LONG).show();
                 return false;
-            };
+            }
         }
 
         for(int i = 0; i < Street.length(); i++){
             if(Street.toLowerCase().charAt(i) < 'a' || Street.toLowerCase().charAt(i) > 'z'){
                 Toast.makeText(RegisterActivity.this, R.string.reg_s_err, Toast.LENGTH_LONG).show();
                 return false;
-            };
+            }
         }
 
         boolean is_email = false;
         for(int i = 0; i < Email.length(); i++){
-            if(Email.toLowerCase().charAt(i) == '@'){
-                is_email = true;
-            };
+            if(Email.toLowerCase().charAt(i) == '@') is_email = true;
         }
 
         if(!is_email){
