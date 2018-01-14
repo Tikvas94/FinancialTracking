@@ -23,7 +23,7 @@
     <string name="cash_r_err">Failed to read value</string>
 
     <!--ExpenseActivity-->
-    <string name="exp_tot">total Expense is: %ld</string>
+    <string name="exp_tot">total Expense is: %d</string>
     <string name="exp_read_err">reading Error</string>
     <string name="exp_entered">entered: </string>
     <string name="exp_not_entered">You did not entered any number…</string>
@@ -36,8 +36,8 @@
     <string name="pro_city">City: </string>
     <string name="pro_street">Street: </string>
 
-    <!--IncomeActivity-->
-    <string name="inc_tot">total income is: %ld</string>
+    IncomeActivityyvity-->
+    <string name="inc_tot">total income is: %d</string>
     <string name="inc_read_err">reading Error</string>
     <string name="inc_entered">entered: </string>
     <string name="inc_null">null</string>
@@ -60,4 +60,7 @@
     <string name="Account_default_pic_url">
         <![CDATA[https://firebasestorage.googleapis.com/v0/b/finantialtrackingtote.appspot.com/o/default.jpeg?alt=media&token=b7bedaab-bf69-43f9-b387-46506c61fc46]]>
     </string>
+    <string name="enter_income">Enter Income</string>
+    <string name="enter_entry">Enter Entry</string>
+    <string name="textview">TextView</string>
 </resources>

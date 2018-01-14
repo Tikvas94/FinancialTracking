@@ -5,6 +5,7 @@ android {
     defaultConfig {
         applicationId "com.example.owner.financialtracking"
         minSdkVersion 18
+        //noinspection OldTargetApi
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -42,6 +43,7 @@ dependencies {
     compile 'com.google.firebase:firebase-database:11.8.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
 }
+
 
 
 
