@@ -22,7 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 public class CashFlowActivity extends AppCompatActivity {
 
     private FirebaseAnalytics mFirebaseAnalytics;
-    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +45,7 @@ public class CashFlowActivity extends AppCompatActivity {
 
         //get current user
         FirebaseUser user = mAuth.getCurrentUser();
+        String userID;
         if (user != null) userID = user.getUid();
         else userID = "";
 
@@ -72,12 +72,11 @@ public class CashFlowActivity extends AppCompatActivity {
         });
 
         // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.child("Account").child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 if(isAdmin(dataSnapshot)){
-                    //Managerbtn.setVisibility(View.VISIBLE);
                     Expensebtn.setVisibility(View.VISIBLE);
                 }
             }
@@ -112,7 +111,6 @@ public class CashFlowActivity extends AppCompatActivity {
     }
 
     private boolean isAdmin(DataSnapshot dataSnapshot) {
-        dataSnapshot = dataSnapshot.child("Account").child(userID);
         Object value = dataSnapshot.child("isManager").getValue();
         return value != null && "true".equals(value.toString());
     }

@@ -23,7 +23,7 @@
     <string name="cash_r_err">Failed to read value</string>
 
     <!--ExpenseActivity-->
-    <string name="exp_tot">total Expense is: </string>
+    <string name="exp_tot">total Expense is: %ld</string>
     <string name="exp_read_err">reading Error</string>
     <string name="exp_entered">entered: </string>
     <string name="exp_not_entered">You did not entered any number…</string>
@@ -37,7 +37,7 @@
     <string name="pro_street">Street: </string>
 
     <!--IncomeActivity-->
-    <string name="inc_tot">total income is: </string>
+    <string name="inc_tot">total income is: %ld</string>
     <string name="inc_read_err">reading Error</string>
     <string name="inc_entered">entered: </string>
     <string name="inc_null">null</string>

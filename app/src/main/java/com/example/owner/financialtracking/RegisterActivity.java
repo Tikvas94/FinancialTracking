@@ -8,11 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -71,7 +73,9 @@ public class RegisterActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         try {
-                                            new Account(RegisterActivity.this.getApplicationContext(), FirstName, LastName, Password1, Email, Street, PhoneNumber, City, isManager, mAuth.getCurrentUser().getUid()).save();
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                            assert user != null;
+                                            new Account(RegisterActivity.this.getApplicationContext(), FirstName, LastName, Password1, Email, Street, PhoneNumber, City, isManager, user.getUid()).save();
                                             Toast.makeText(RegisterActivity.this, R.string.reg_succ, Toast.LENGTH_SHORT).show();
                                             Toast.makeText(RegisterActivity.this, "", Toast.LENGTH_SHORT).show();
                                             Intent myIntent = new Intent(RegisterActivity.this, CashFlowActivity.class);

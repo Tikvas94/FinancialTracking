@@ -75,11 +75,11 @@ public class Account {
         c.setValue(getPicture());
     }
 
-    public String getFirstName() {
+    String getFirstName() {
         return FirstName;
     }
 
-    public String getLastName() {
+    String getLastName() {
         return LastName;
     }
 
@@ -87,27 +87,27 @@ public class Account {
         return Email;
     }
 
-    public String getPassword() {
+    String getPassword() {
         return Password;
     }
 
-    public String getStreet() {
+    String getStreet() {
         return Street;
     }
 
-    public String getPhoneNumber() {
+    String getPhoneNumber() {
         return PhoneNumber;
     }
 
-    public String getCity() {
+    String getCity() {
         return City;
     }
 
-    public String getPicture() {
+    private String getPicture() {
         return picture;
     }
 
-    public boolean isManager() {
+    private boolean isManager() {
         return isManager;
     }
 }

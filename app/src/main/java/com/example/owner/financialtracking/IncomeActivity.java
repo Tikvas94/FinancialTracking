@@ -1,12 +1,7 @@
 package com.example.owner.financialtracking;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +16,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class IncomeActivity extends AppCompatActivity {
 
-    private FirebaseDatabase database;
     private DatabaseReference mFirebase;
     Button enterIncomeBtn;
     TextView textViewTotalIncome;
@@ -42,7 +36,6 @@ public class IncomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getCurrentIncome();
-                //TODO test reading from edittext
                 try {
                     long entry = Long.parseLong(editTextEnterIncome.getText().toString());
                     mFirebase.child("Income").child("sum").setValue(priorIncome + entry);
@@ -67,7 +60,7 @@ public class IncomeActivity extends AppCompatActivity {
                         try {
                             priorIncome = (long)dataSnapshot.getValue();
                             textViewTotalIncome.setText( IncomeActivity.this.getResources()
-                                    .getString(R.string.inc_tot) + priorIncome);
+                                    .getString(R.string.inc_tot, priorIncome));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

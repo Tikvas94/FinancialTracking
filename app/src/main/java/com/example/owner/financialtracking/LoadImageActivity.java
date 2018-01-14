@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -34,8 +36,6 @@ public class LoadImageActivity extends AppCompatActivity {
 
     private StorageReference mStorageRef;
     private String userID;
-    private FirebaseAuth mAuth;
-    private FirebaseUser user;
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private final DatabaseReference ref = database.getReference("Account");
 
@@ -49,15 +49,15 @@ public class LoadImageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_load_image);
         Button buttonLoadImage = findViewById(R.id.LoadImage);
         targetImage = findViewById(R.id.targetimage);
-        mAuth=FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         //get current user
-        user = mAuth.getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
         userID = user.getUid();
 
         buttonLoadImage.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                // TODO Auto-generated method stub
                 Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, REQUEST_IMAGE_UPLOAD);
             }
@@ -86,24 +86,25 @@ public class LoadImageActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
         //upload picture
         if (requestCode == REQUEST_IMAGE_UPLOAD && resultCode == RESULT_OK) {
             Uri targetUri = data.getData();
             Uri tUri = data.getData();
 
+            assert tUri != null;
             String FileName = getContentResolver().getType(tUri);
-            String filenameArray[] = FileName.split("\\/");
+            assert FileName != null;
+            String filenameArray[] = FileName.split("/");
             String extension = filenameArray[filenameArray.length - 1];
             if (extension.toLowerCase().equals("jpg") || extension.toLowerCase().equals("png") || extension.toLowerCase().equals("jpeg")) {
                 Bitmap bitmap;
                 try {
+                    assert targetUri != null;
                     bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
                     targetImage.setImageBitmap(bitmap);
                 } catch (FileNotFoundException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    Log.w(LoadImageActivity.class.getSimpleName(), "Failed to decode image stream", e);
                 }
                 if (extension.toLowerCase().equals("jpeg"))
                     Toast.makeText(this, LoadImageActivity.this.getResources()
@@ -121,10 +122,12 @@ public class LoadImageActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             //Get the photo
             Bundle extras = data.getExtras();
+            assert extras != null;
             Bitmap photo = (Bitmap) extras.get("data");
             try {
                 Long name = (System.currentTimeMillis());
                 FileOutputStream out = new FileOutputStream(name.toString());
+                assert photo != null;
                 photo.compress(Bitmap.CompressFormat.PNG, 90, out);
                 out.close();
             } catch (Exception e) {
@@ -151,10 +154,13 @@ public class LoadImageActivity extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Toast.makeText(getApplicationContext(), LoadImageActivity.this.getResources()
                                     .getString(R.string.load_up_succ), Toast.LENGTH_SHORT).show();
-                            Uri picturePath = taskSnapshot.getMetadata().getDownloadUrl();
+                            StorageMetadata metaData = taskSnapshot.getMetadata();
+                            assert metaData != null;
+                            Uri picturePath = metaData.getDownloadUrl();
                             DatabaseReference usersRef = ref.child(userID);
                             DatabaseReference c;
                             c=usersRef.child("Picture");
+                            assert picturePath != null;
                             c.setValue(picturePath.toString());
                             progressDialog.dismiss();
                         }

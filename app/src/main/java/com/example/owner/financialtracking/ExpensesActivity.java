@@ -36,7 +36,6 @@ public class ExpensesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getCurrentExp();
-                //TODO test reading from edittext
                 try {
                     long entry = Long.parseLong(editTextEnterExp.getText().toString());
                     mFirebase.child("Expense").child("sum").setValue(priorEpx + entry);
@@ -61,7 +60,7 @@ public class ExpensesActivity extends AppCompatActivity {
                         try {
                             priorEpx = (long)dataSnapshot.getValue();
                             textViewTotalExp.setText(ExpensesActivity.this.getResources()
-                                    .getString(R.string.exp_tot) + Long.toString(priorEpx));
+                                    .getString(R.string.exp_tot, priorEpx));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
